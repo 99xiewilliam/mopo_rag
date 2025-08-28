@@ -1,0 +1,14 @@
+pipeline: modular
+
+data:
+  input_dir: ./rag/data/corpus
+
+chunking:
+  chunk_size: 800
+  chunk_overlap: 120
+
+retriever:
+  top_k: 8
+  alpha: 0.6
+
+

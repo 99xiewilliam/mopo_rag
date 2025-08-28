@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+import os
 import yaml
 
 
@@ -23,5 +24,23 @@ def get_data_input_dir(path: Optional[str] = None) -> Optional[str]:
     data = cfg.get("data", {}) if isinstance(cfg, dict) else {}
     input_dir = data.get("input_dir") if isinstance(data, dict) else None
     return input_dir
+
+
+def get_pipeline_type(path: Optional[str] = None) -> str:
+    cfg = load_config(path)
+    return (cfg.get("pipeline") or "modular") if isinstance(cfg, dict) else "modular"
+
+
+def apply_env_from_config(cfg: Dict[str, Any]) -> None:
+    env_map = cfg.get("env") if isinstance(cfg, dict) else None
+    if not isinstance(env_map, dict):
+        return
+    for key, value in env_map.items():
+        if not isinstance(key, str):
+            continue
+        if value is None:
+            continue
+        os.environ[str(key)] = str(value)
+
 
 
