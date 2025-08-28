@@ -1,0 +1,22 @@
+data:
+  input_dir: ./rag/data/corpus
+  formats: ["txt"]
+
+chunking:
+  strategy: recursive
+  chunk_size: 800
+  chunk_overlap: 120
+
+retriever:
+  type: simple
+  top_k: 5
+
+generator:
+  type: simple
+  template: ./rag/prompts/qa.jinja
+
+evaluation:
+  dataset_path: ./rag/data/qa_eval.jsonl
+  metrics: ["EM", "F1"]
+
+

@@ -1,0 +1,12 @@
+You are a helpful assistant. Answer the user question using only the provided context.
+
+Question: {{ question }}
+
+Context:
+{% for c in context_list %}
+- {{ c[:300] | replace('\n', ' ') }}
+{% endfor %}
+
+Answer:
+
+

@@ -1,0 +1,2 @@
+MOPO-RAG is a minimal RAG service. This is example corpus text for quick testing.
+
