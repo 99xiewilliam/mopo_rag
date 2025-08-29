@@ -1,0 +1,20 @@
+data:
+  corpus_path: ./rag/data/corpus
+  dataset_path: ./data/eval/dev.jsonl   # 每行: {"id","query","answers":[...],"doc_ids":[...可选]}
+
+# 网格搜索维度（会做笛卡尔积）
+sweeps:
+  retriever: [bm25, hybrid, dense]
+  embedder: [tfidf, sbert]
+  use_faiss: [false, true]
+  reranker: [none, cross_encoder]
+  top_k: [8, 20]
+  generator: [template]
+
+fixed:
+  # 可在此放 OpenAI key、设备、统一超参等
+  env: {}
+
+retriever_k: 10
+
+
